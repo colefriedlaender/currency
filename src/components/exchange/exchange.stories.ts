@@ -1,11 +1,19 @@
 import "./exchange.css";
 import { createCard } from "./exchange";
-import {getExchangeRateUSD} from "../utils/api"
+import {createInput} from "../exchange/exchange-input"
+import {createElement} from "../utils/createElement"
+import {getExchangeRateUSD,} from "../utils/api"
+
+export default {
+  title: "Components/Exchange",
+  parameters: { layout: "centered" },
+};
 
 
-
-  export const ExchangeRateAPI = ( { loaded: { rate } }) => {
+  export const ExchangeRateAPI = ( args, { loaded: { rate } }) => {
+    console.log(rate, "2")
     return createCard(rate);
+
   };
   
   ExchangeRateAPI.loaders = [
@@ -13,3 +21,5 @@ import {getExchangeRateUSD} from "../utils/api"
       rate: await getExchangeRateUSD(),
     }),
   ];
+
+
