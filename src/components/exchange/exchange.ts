@@ -1,8 +1,7 @@
 import { createElement } from "../utils/createElement";
 
-export function createCard(rate) {
-  let inputValue = 1;
-  console.log(rate, inputValue)
+export function createCard(rate, inputValue = 1) {
+  console.log("The result is:" + Math.round((inputValue * rate) *100) /100 )
   return createElement("div",{
     className: "container",
     childs: [
@@ -13,7 +12,7 @@ export function createCard(rate) {
             className: "input",
             type: "number",
             placeholder: "Euro",
-            onchange: (event) =>  inputValue = Number(event.target.value)
+            onchange: (event) => createCard(rate, Number(event.target.value))
           })
         ],
       }),
@@ -26,7 +25,7 @@ export function createCard(rate) {
                 }),
                 createElement("h3",{
                   className: "dollar",
-                  innerText: inputValue  + "$",
+                  innerHTML: "$" + Number(inputValue * rate)  ,
                 })
               ], 
             }),
